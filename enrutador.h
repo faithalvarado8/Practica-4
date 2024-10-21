@@ -1,21 +1,27 @@
 #ifndef ENRUTADOR_H
 #define ENRUTADOR_H
 
-#include <string>
+#include <iostream>
 #include <map>
+#include <string>
+
 using namespace std;
 
-class Enrutador{
+class Enrutador {
 private:
     string nombre;
-    map<string, int> tablaEnrutamiento;
+    map<string, int> tablaEnrutamiento;  // Destino y costo
 
 public:
+    // Constructor
+    Enrutador();
     Enrutador(const string& nombreEnrutador);
-    void agregarRuta(const string& destino, int costo);
-    void actualizarRuta(const string& destino, int nuevoCosto);
-    void mostrarTabla() const;
+
+    // Metodos
+    void costoRuta(const string& destino, int costo);
+    map<string, int> getTabla() const;
     string getNombre() const;
+    void mostrarTabla() const;
 };
 
 #endif // ENRUTADOR_H
