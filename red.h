@@ -17,7 +17,6 @@ private:
     map<string, Enrutador> enrutadores;
 
 public:
-    // Métodos
     void agregarEnrutador(const string& nombre);
     void eliminarEnrutador(const string& nombre);
     void agregarRuta(const string& origen, const string& destino, float costo);
@@ -28,3 +27,4 @@ public:
 };
 
 #endif // RED_H
+
