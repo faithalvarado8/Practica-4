@@ -5,11 +5,11 @@ Enrutador::Enrutador(){
 
 Enrutador::Enrutador(const string& nombreEnrutador) : nombre(nombreEnrutador) {}
 
-void Enrutador::costoRuta(const string& destino, int costo) {
+void Enrutador::costoRuta(const string& destino, float costo) {
     tablaEnrutamiento[destino] = costo;
 }
 
-map<string, int> Enrutador::getTabla() const {
+map<string, float>& Enrutador::getTabla() {
     return tablaEnrutamiento;
 }
 
@@ -20,6 +20,7 @@ string Enrutador::getNombre() const {
 void Enrutador::mostrarTabla() const {
     cout << "Tabla de enrutamiento para " << nombre << ":\n";
     for (const auto& entrada : tablaEnrutamiento) {
-        cout << "Destino: " << entrada.first << " - Costo: " << entrada.second << "\n";
+        cout << nombre << " -> " << entrada.first << " (Costo: " << entrada.second << ")" << endl;
     }
 }
+
