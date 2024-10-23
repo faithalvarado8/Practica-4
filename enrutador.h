@@ -14,11 +14,9 @@ private:
 
 
 public:
-    // Constructor
     Enrutador();
     Enrutador(const string& nombreEnrutador);
 
-    // Metodos
     void costoRuta(const string& destino, float costo);
     map<string, float>& getTabla();
     string getNombre() const;
