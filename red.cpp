@@ -65,7 +65,7 @@ void Red::caminoMasCorto(string origen, string destino) {
     set<pair<float, string>> cola;
 
     for (const auto &enrutador : enrutadores) {
-        distancias[enrutador.first] = numeric_limits<float>::infinity();  // Inicialmente, todas las distancias son infinitas
+        distancias[enrutador.first] = numeric_limits<float>::infinity();
     }
     distancias[origen] = 0;
     cola.insert({0, origen});
