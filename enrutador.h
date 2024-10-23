@@ -10,7 +10,8 @@ using namespace std;
 class Enrutador {
 private:
     string nombre;
-    map<string, int> tablaEnrutamiento;  // Destino y costo
+    map<string, float> tablaEnrutamiento;  // Destino y costo
+
 
 public:
     // Constructor
@@ -18,8 +19,8 @@ public:
     Enrutador(const string& nombreEnrutador);
 
     // Metodos
-    void costoRuta(const string& destino, int costo);
-    map<string, int> getTabla() const;
+    void costoRuta(const string& destino, float costo);
+    map<string, float>& getTabla();
     string getNombre() const;
     void mostrarTabla() const;
 };
