@@ -4,22 +4,20 @@
 #include <fstream>
 #include <cstdlib>  // Para rand() y srand()
 #include <ctime>    // Para time()
-#include <set>
+#include <map>
 #include <vector>
 
 using namespace std;
 
 void generarRedAleatoria(const string& nombreArchivo, unsigned int numNodos, unsigned int numRutas) {
-
     srand(time(0));
-
 
     vector<char> nodos;
     for (unsigned int i = 0; i < numNodos; ++i) {
         nodos.push_back('A' + i);
     }
 
-    set<pair<char, char>> rutasGeneradas;
+    map<pair<char, char>, bool> rutasGeneradas;
 
     ofstream archivo(nombreArchivo);
     if (!archivo.is_open()) {
@@ -34,12 +32,12 @@ void generarRedAleatoria(const string& nombreArchivo, unsigned int numNodos, uns
         do {
             origen = nodos[rand() % numNodos];
             destino = nodos[rand() % numNodos];
-        } while (origen == destino || rutasGeneradas.count({origen, destino}) > 0);
+        } while (origen == destino || rutasGeneradas[{origen, destino}] || rutasGeneradas[{destino, origen}]);
 
         costo = static_cast<float>(rand() % 100 + 1);
 
-        rutasGeneradas.insert({origen, destino});
-        rutasGeneradas.insert({destino, origen});
+        rutasGeneradas[{origen, destino}] = true;
+        rutasGeneradas[{destino, origen}] = true;
 
         archivo << origen << " " << destino << " " << costo << endl;
         archivo << destino << " " << origen << " " << costo << endl;
