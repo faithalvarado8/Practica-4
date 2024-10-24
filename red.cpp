@@ -62,17 +62,17 @@ void Red::caminoMasCorto(string origen, string destino) {
 
     map<string, float> distancias;
     map<string, string> anterior;
-    set<pair<float, string>> cola;
+    set<pair<float, string>> fila;
 
     for (const auto &enrutador : enrutadores) {
         distancias[enrutador.first] = numeric_limits<float>::infinity();
     }
     distancias[origen] = 0;
-    cola.insert({0, origen});
+    fila.insert({0, origen});
 
-    while (!cola.empty()) {
-        auto actual = *cola.begin();
-        cola.erase(cola.begin());
+    while (!fila.empty()) {
+        auto actual = *fila.begin();
+        fila.erase(fila.begin());
         string enrutadorActual = actual.second;
 
         if (enrutadorActual == destino) {
@@ -84,10 +84,10 @@ void Red::caminoMasCorto(string origen, string destino) {
             float costoRuta = vecino.second;
 
             if (distancias[enrutadorActual] + costoRuta < distancias[enrutadorVecino]) {
-                cola.erase({distancias[enrutadorVecino], enrutadorVecino});
+                fila.erase({distancias[enrutadorVecino], enrutadorVecino});
                 distancias[enrutadorVecino] = distancias[enrutadorActual] + costoRuta;
                 anterior[enrutadorVecino] = enrutadorActual;
-                cola.insert({distancias[enrutadorVecino], enrutadorVecino});
+                fila.insert({distancias[enrutadorVecino], enrutadorVecino});
             }
         }
     }
